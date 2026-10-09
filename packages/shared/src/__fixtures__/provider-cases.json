@@ -1,0 +1,156 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "kind": "YOUTUBE",
+    "provider": "youtube",
+    "externalId": "dQw4w9WgXcQ",
+    "permitted": true
+  },
+  {
+    "url": "https://youtu.be/dQw4w9WgXcQ",
+    "kind": "YOUTUBE",
+    "provider": "youtube",
+    "externalId": "dQw4w9WgXcQ",
+    "permitted": true
+  },
+  {
+    "url": "https://www.youtube.com/shorts/abc123XYZ",
+    "kind": "YOUTUBE",
+    "provider": "youtube",
+    "externalId": "abc123XYZ",
+    "permitted": true
+  },
+  {
+    "url": "https://m.youtube.com/watch?v=aaaaaaaaaaa&t=120s",
+    "kind": "YOUTUBE",
+    "provider": "youtube",
+    "externalId": "aaaaaaaaaaa",
+    "permitted": true
+  },
+  {
+    "url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "kind": "YOUTUBE",
+    "provider": "youtube",
+    "externalId": "dQw4w9WgXcQ",
+    "permitted": true
+  },
+  {
+    "url": "https://www.youtube.com/playlist?list=PLrAXtmErZgOeiKm4sgNOknGvNjby9efdf",
+    "kind": "YOUTUBE",
+    "provider": "youtube",
+    "externalId": null,
+    "permitted": false
+  },
+  {
+    "url": "https://music.youtube.com/watch?v=xyz1234567",
+    "kind": "YOUTUBE",
+    "provider": "youtube",
+    "externalId": "xyz1234567",
+    "permitted": true
+  },
+  {
+    "url": "https://www.tiktok.com/@user/video/7106594312292453675",
+    "kind": "TIKTOK",
+    "provider": "tiktok",
+    "externalId": "7106594312292453675",
+    "permitted": true
+  },
+  {
+    "url": "https://vm.tiktok.com/ZM8jdkqXt/",
+    "kind": "TIKTOK",
+    "provider": "tiktok",
+    "externalId": null,
+    "permitted": true
+  },
+  {
+    "url": "https://www.facebook.com/watch/?v=1234567890",
+    "kind": "FACEBOOK",
+    "provider": "facebook",
+    "permitted": true,
+    "externalId": "1234567890"
+  },
+  {
+    "url": "https://fb.watch/abcDEF123/",
+    "kind": "FACEBOOK",
+    "provider": "facebook",
+    "permitted": true
+  },
+  {
+    "url": "https://www.facebook.com/somepage/videos/987654321",
+    "kind": "FACEBOOK",
+    "provider": "facebook",
+    "permitted": true,
+    "externalId": "987654321"
+  },
+  {
+    "url": "https://cdn.example.com/media/talk.mp4",
+    "kind": "GENERIC",
+    "provider": "cdn.example.com",
+    "permitted": true
+  },
+  {
+    "url": "https://vimeo.com/76979871",
+    "kind": "GENERIC",
+    "provider": "vimeo.com",
+    "permitted": true
+  },
+  {
+    "url": "https://www.twitch.tv/videos/123456789",
+    "kind": "GENERIC",
+    "provider": "www.twitch.tv",
+    "permitted": true
+  },
+  {
+    "url": "not a url at all",
+    "kind": "GENERIC",
+    "provider": "unknown",
+    "permitted": false
+  },
+  {
+    "url": "ftp://example.com/video.mp4",
+    "kind": "GENERIC",
+    "provider": "unknown",
+    "permitted": false
+  },
+  {
+    "url": "",
+    "kind": "GENERIC",
+    "provider": "unknown",
+    "permitted": false
+  },
+  {
+    "url": "https://www.facebook.com/groups/123456/posts/789",
+    "kind": "FACEBOOK",
+    "provider": "facebook",
+    "externalId": null,
+    "permitted": false
+  },
+  {
+    "url": "http://localhost:9000/video.mp4",
+    "kind": "GENERIC",
+    "provider": "localhost",
+    "externalId": null,
+    "permitted": false
+  },
+  {
+    "url": "http://127.0.0.1/media.mp4",
+    "kind": "GENERIC",
+    "provider": "127.0.0.1",
+    "externalId": null,
+    "permitted": false
+  },
+  {
+    "url": "http://169.254.169.254/latest/meta-data",
+    "kind": "GENERIC",
+    "provider": "169.254.169.254",
+    "externalId": null,
+    "permitted": false
+  },
+  {
+    "url": "https://www.youtube.com/live/abcdefghijk",
+    "kind": "YOUTUBE",
+    "provider": "youtube",
+    "externalId": "abcdefghijk",
+    "permitted": true
+  }
+]

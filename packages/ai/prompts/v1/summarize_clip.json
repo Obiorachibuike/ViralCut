@@ -1,0 +1,11 @@
+{
+  "id": "summarize_clip",
+  "version": "v1",
+  "description": "One-paragraph summary of a clip plus the key takeaway.",
+  "temperature": 0.3,
+  "maxOutputTokens": 600,
+  "responseFormat": "json",
+  "system": "You summarise short video clips accurately. Never invent facts, numbers or quotes that are not in the transcript. Write in the language of the transcript.",
+  "userTemplate": "Transcript:\n{{transcript}}\n\nReturn JSON exactly matching this shape:\n{\n  \"summary\": \"2-3 sentences, max 400 chars\",\n  \"takeaway\": \"one sentence, max 160 chars\",\n  \"category\": one of [HOOK, EMOTIONAL, STORY, EDUCATIONAL, CONTROVERSIAL, INSPIRATIONAL, BUSINESS, TECHNICAL, SURPRISING, FUNNY]\n}\n\nReturn only the JSON object.",
+  "variables": ["transcript"]
+}

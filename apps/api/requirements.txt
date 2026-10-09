@@ -1,0 +1,29 @@
+# --- Core service -----------------------------------------------------------
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.32
+pydantic>=2.9,<3.0
+pydantic-settings>=2.6
+python-multipart>=0.0.12
+httpx>=0.27
+orjson>=3.10
+
+# --- Video / media ----------------------------------------------------------
+# FFmpeg must be installed on the host (see README). `imageio-ffmpeg` ships a
+# static binary and is used as a fallback when `ffmpeg` is not on PATH.
+imageio-ffmpeg>=0.5.1
+numpy>=1.26
+# Downloads public videos from supported social platforms. Required for URL
+# import; adapters refuse DRM / private / login-gated sources outright.
+yt-dlp>=2024.10.7
+
+# Optional accelerators. Every one of these is guarded by an import check, so
+# the service boots (and the deterministic pipeline runs) without them.
+# scenedetect[opencv]>=0.6.4        # scene detection
+# opencv-python-headless>=4.10      # face tracking
+# faster-whisper>=1.1               # speech-to-text
+# pyannote.audio>=3.3               # speaker diarization
+# boto3>=1.35                       # Cloudflare R2 / S3 storage
+
+# --- Tests ------------------------------------------------------------------
+pytest>=8.3
+pytest-asyncio>=0.24

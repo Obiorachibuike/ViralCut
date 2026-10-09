@@ -1,0 +1,76 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: viralcut
+      POSTGRES_PASSWORD: viralcut
+      POSTGRES_DB: viralcut
+    ports: ['5432:5432']
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U viralcut']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports: ['6379:6379']
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # FastAPI media engine (FFmpeg, Whisper, scene detection, moment discovery, rendering)
+  media-engine:
+    build: ./infrastructure/docker/media-engine
+    environment:
+      MEDIA_ENGINE_TOKEN: ${MEDIA_ENGINE_TOKEN}
+      STORAGE_BACKEND: ${STORAGE_BACKEND:-local}
+      STORAGE_LOCAL_DIR: /media
+      R2_ACCOUNT_ID: ${R2_ACCOUNT_ID}
+      R2_ACCESS_KEY_ID: ${R2_ACCESS_KEY_ID}
+      R2_SECRET_ACCESS_KEY: ${R2_SECRET_ACCESS_KEY}
+      R2_BUCKET_NAME: ${R2_BUCKET_NAME}
+      R2_PUBLIC_URL: ${R2_PUBLIC_URL}
+      VIRALCUT_AI_PROVIDER: ${VIRALCUT_AI_PROVIDER:-none}
+      VIRALCUT_AI_API_KEY: ${AI_API_KEY}
+      VIRALCUT_AI_MODEL: ${VIRALCUT_AI_MODEL}
+      VIRALCUT_CALLBACK_BASE_URL: ${VIRALCUT_CALLBACK_BASE_URL}
+      VIRALCUT_CALLBACK_TOKEN: ${VIRALCUT_CALLBACK_TOKEN}
+    volumes: [media:/media]
+    ports: ['8000:8000']
+
+  web:
+    build:
+      context: .
+      dockerfile: ./infrastructure/docker/web/Dockerfile
+    environment:
+      DATABASE_URL: postgresql://viralcut:viralcut@postgres:5432/viralcut
+      REDIS_URL: redis://redis:6379
+      FASTAPI_URL: http://media-engine:8000
+      MEDIA_ENGINE_TOKEN: ${MEDIA_ENGINE_TOKEN}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+    depends_on: [postgres, redis, media-engine]
+    ports: ['3000:3000']
+
+  worker:
+    build:
+      context: .
+      dockerfile: ./infrastructure/docker/web/Dockerfile
+    command: ['node', 'apps/web/dist/workers/index.js']
+    environment:
+      DATABASE_URL: postgresql://viralcut:viralcut@postgres:5432/viralcut
+      REDIS_URL: redis://redis:6379
+      FASTAPI_URL: http://media-engine:8000
+      MEDIA_ENGINE_TOKEN: ${MEDIA_ENGINE_TOKEN}
+    depends_on: [postgres, redis, media-engine]
+
+volumes:
+  pgdata:
+  media:

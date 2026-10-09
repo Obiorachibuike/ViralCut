@@ -1,0 +1,46 @@
+{
+  "name": "viralcut",
+  "private": true,
+  "version": "0.1.0",
+  "description": "ViralCut \u2014 AI video moment discovery & short-form clipping platform",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n web,api -c cyan,magenta \"npm:dev:web\" \"npm:dev:api\"",
+    "dev:web": "npm run dev --workspace @viralcut/web",
+    "dev:api": "npm run dev --workspace @viralcut/api-bridge",
+    "build": "npm run build --workspace @viralcut/web",
+    "start": "npm run start --workspace @viralcut/web",
+    "lint": "npm run lint --workspace @viralcut/web",
+    "typecheck": "tsc -p apps/web/tsconfig.json --noEmit",
+    "test": "npm run test:node && npm run test:python",
+    "test:node": "vitest run",
+    "test:python": "bash scripts/test-python.sh",
+    "db:generate": "npm run generate --workspace @viralcut/database",
+    "db:push": "npm run push --workspace @viralcut/database",
+    "db:migrate": "npm run migrate:dev --workspace @viralcut/database",
+    "worker": "tsx apps/web/workers/index.ts",
+    "db:validate": "node scripts/validate-prisma-schema.mjs",
+    "db:format": "node scripts/format-prisma-schema.mjs",
+    "pretest": "npm run db:validate"
+  },
+  "devDependencies": {
+    "@prisma/prisma-schema-wasm": "^6.18.0-8.34b5a692b7bd79939a9a2c3ef97d816e749cda2f",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/node": "^22.10.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.0",
+    "jsdom": "^25.0.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

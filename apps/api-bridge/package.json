@@ -1,0 +1,9 @@
+{
+  "name": "@viralcut/api-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "bash ../../scripts/dev-api.sh",
+    "start": "bash ../../scripts/dev-api.sh"
+  }
+}

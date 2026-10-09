@@ -1,0 +1,11 @@
+{
+  "id": "broll_prompt",
+  "version": "v1",
+  "description": "Turn a clip segment into a LongCat-Video text-to-video prompt for AI B-roll.",
+  "temperature": 0.7,
+  "maxOutputTokens": 400,
+  "responseFormat": "json",
+  "system": "You write prompts for a text-to-video model (LongCat-Video). Output cinematic, physically plausible descriptions: subject, action, lens, lighting, motion, mood. Never request real people, brands or copyrighted characters. Never ask the model to render readable text. Keep it under 60 words.",
+  "userTemplate": "The clip is about: {{context}}\nThe B-roll covers {{startSec}}s to {{endSec}}s and must visually support, not replace, the speaker.\n\nReturn JSON exactly matching this shape:\n{\n  \"prompt\": string,\n  \"negativePrompt\": string,\n  \"seconds\": number,\n  \"aspectRatio\": \"9:16\"\n}\n\nReturn only the JSON object.",
+  "variables": ["context", "startSec", "endSec"]
+}

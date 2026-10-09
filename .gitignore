@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+.next/
+out/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Media / runtime artifacts
+.media/
+.media-work/
+.storage/
+*.mp4
+*.mov
+*.webm
+*.mkv
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Logs & OS
+*.log
+npm-debug.log*
+.DS_Store
+
+# Editors
+.vscode/
+.idea/

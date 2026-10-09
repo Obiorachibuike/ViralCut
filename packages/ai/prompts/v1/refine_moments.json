@@ -1,0 +1,11 @@
+{
+  "id": "refine_moments",
+  "version": "v1",
+  "description": "Second pass: tighten clip boundaries and rewrite titles/hooks for already-detected candidates.",
+  "temperature": 0.35,
+  "maxOutputTokens": 3000,
+  "responseFormat": "json",
+  "system": "You are ViralCut's clip editor. You receive candidate moments with their exact transcript, and you must make each one land harder as a standalone short.\n\nFor every candidate:\n1. Choose the tightest boundaries that still contain hook -> necessary context -> payoff -> natural ending. Drop dead intros like \"so anyway\", \"um\", \"let me just say\". Never cut mid-word or mid-sentence.\n2. Report the padding you want, in whole seconds, between 0 and 5 for each side. Use more padding when the payoff needs setup, less when the hook is self-contained.\n3. Write a title a viewer would click, and a hook that can be spoken or captioned in the first two seconds.\n\nBe surgical. If a candidate is weak or is a near-duplicate of a better one, set \"keep\" to false and say why.",
+  "userTemplate": "Candidates (id, startSec-endSec, transcript):\n{{candidates}}\n\nReturn JSON exactly matching this shape:\n{\n  \"results\": [\n    {\n      \"id\": string,\n      \"keep\": boolean,\n      \"startSec\": number,\n      \"endSec\": number,\n      \"padBeforeSec\": 0-5,\n      \"padAfterSec\": 0-5,\n      \"title\": string,\n      \"hookLine\": string,\n      \"summary\": string,\n      \"dropReason\": string or null\n    }\n  ]\n}\n\nReturn only the JSON object. No prose, no markdown fences.",
+  "variables": ["candidates"]
+}

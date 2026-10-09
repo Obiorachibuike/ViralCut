@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark-first premium SaaS palette (spec 36). */
+    --background: 221 47% 4%;      /* #05070D */
+    --foreground: 210 40% 98%;     /* #FFFFFF */
+    --surface: 221 44% 7%;         /* #0A0F1C */
+    --surface-secondary: 220 43% 9%; /* #0D1322 */
+    --card: 222 43% 13%;           /* #131C31 */
+    --card-foreground: 210 40% 98%;
+    --primary: 239 84% 67%;        /* #6366F1 */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 258 90% 66%;      /* #8B5CF6 */
+    --secondary-foreground: 210 40% 98%;
+    --accent: 142 71% 45%;         /* #22C55E */
+    --accent-foreground: 144 61% 10%;
+    --muted: 220 32% 14%;
+    --muted-foreground: 215 16% 62%; /* #94A3B8 */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 32% 18%;
+    --input: 220 32% 18%;
+    --ring: 239 84% 67%;
+    --radius: 0.75rem;
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --surface: 210 40% 98%;
+    --surface-secondary: 214 32% 96%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --primary: 239 84% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 258 90% 60%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 142 71% 40%;
+    --accent-foreground: 144 61% 98%;
+    --muted: 210 40% 94%;
+    --muted-foreground: 215 16% 35%;
+    --border: 214 32% 88%;
+    --input: 214 32% 88%;
+    --ring: 239 84% 60%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply border border-white/10 bg-card/60 backdrop-blur-xl;
+  }
+  .animated-border {
+    position: relative;
+    border-radius: var(--radius);
+  }
+  .animated-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0 40%,
+      hsl(var(--primary)) 50%,
+      hsl(var(--secondary)) 60%,
+      transparent 70% 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: border-spin 6s linear infinite;
+    pointer-events: none;
+  }
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
+}

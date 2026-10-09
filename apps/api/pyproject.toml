@@ -1,0 +1,16 @@
+[project]
+name = "viralcut-media-engine"
+version = "0.1.0"
+description = "ViralCut media engine — ingestion, transcription, moment discovery and rendering"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+filterwarnings = ["ignore::DeprecationWarning"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
