@@ -1,0 +1,11 @@
+{
+  "id": "hooks_and_titles",
+  "version": "v1",
+  "description": "Generate 3 hook options and 3 title options for a single clip.",
+  "temperature": 0.8,
+  "maxOutputTokens": 800,
+  "responseFormat": "json",
+  "system": "You are a short-form video copywriter. You write scroll-stopping hooks and titles for TikTok, YouTube Shorts and Instagram Reels.\n\nRules:\n- Hooks are the first thing said or shown. Max 90 characters. They must create an open loop.\n- Titles are what appears in the caption/feed. Max 60 characters.\n- Never use clickbait that the transcript does not support. No fabricated numbers.\n- Vary the angle across the three options: one curiosity gap, one bold claim, one specific/concrete.\n- Write in the language of the transcript.",
+  "userTemplate": "Clip transcript ({{startSec}}s - {{endSec}}s):\n{{transcript}}\n\nCurrent working title: {{currentTitle}}\nCategory: {{category}}\n\nReturn JSON exactly matching this shape:\n{\n  \"hooks\": [\"option 1\", \"option 2\", \"option 3\"],\n  \"titles\": [\"option 1\", \"option 2\", \"option 3\"],\n  \"hashtags\": [\"up to 6 relevant hashtags without the # symbol\"]\n}\n\nReturn only the JSON object.",
+  "variables": ["transcript", "startSec", "endSec", "currentTitle", "category"]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "@viralcut/database",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": { ".": "./src/index.ts", "./package.json": "./package.json" },
+  "scripts": {
+    "generate": "prisma generate --schema=../../prisma/schema.prisma",
+    "push": "prisma db push --schema=../../prisma/schema.prisma",
+    "migrate:dev": "prisma migrate dev --schema=../../prisma/schema.prisma",
+    "migrate:deploy": "prisma migrate deploy --schema=../../prisma/schema.prisma",
+    "studio": "prisma studio --schema=../../prisma/schema.prisma"
+  },
+  "dependencies": { "@prisma/client": "6.18.0" },
+  "devDependencies": { "prisma": "6.18.0" }
+}
